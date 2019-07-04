@@ -202,17 +202,23 @@ public abstract class AbstractTracer implements Tracer, Closeable {
             return;
         }
         if (metaEventLoggingEnabled && !firstReportHasRun) {
+            firstReportHasRun = true;
             buildSpan(LightStepConstants.MetaEvents.TracerCreateOperation)
                     .ignoreActiveSpan()
                     .withTag(LightStepConstants.MetaEvents.MetaEventKey, true)
                     .withTag(LightStepConstants.MetaEvents.TracerGuidKey, reporter.getReporterId())
                     .start()
                     .finish();
-            firstReportHasRun = true;
         }
         reportingThread = new Thread(reportingLoop, LightStepConstants.Internal.REPORTING_THREAD_NAME);
         reportingThread.setDaemon(true);
         reportingThread.start();
+        reportingThread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread t, Throwable e) {
+                error("Unexpected error in reporting thread: ", e.getMessage());
+            }
+        });
     }
 
     /**
