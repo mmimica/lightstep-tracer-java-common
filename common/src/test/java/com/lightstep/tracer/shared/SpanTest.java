@@ -418,11 +418,11 @@ public class SpanTest {
         assertEquals("1", undertest.context().toTraceId());
         assertEquals("2", undertest.context().toSpanId());
     }
-
-    @Test
-    public void testMetaEventLoggingEnabled() {
-        abstractTracer.metaEventLoggingEnabled = true;
-        when(abstractTracer.buildSpan(anyString())).thenReturn(new com.lightstep.tracer.shared.SpanBuilder("", abstractTracer));
-        new Span(abstractTracer, spanContext, grpcSpan, 0L);
-    }
+//
+//    @Test
+//    public void testMetaEventLoggingEnabled() {
+//        abstractTracer.metaEventLoggingEnabled = true;
+//        when(abstractTracer.buildSpan(anyString())).thenReturn(new com.lightstep.tracer.shared.SpanBuilder("", abstractTracer));
+//        new Span(abstractTracer, spanContext, grpcSpan, 0L);
+//    }
 }
