@@ -573,6 +573,7 @@ public abstract class AbstractTracer implements Tracer, Closeable {
                     disable();
                 } else if (command.getDevMode()) {
                     if (!disableMetaEventLogging) {
+                        info("Meta reporting enabled.");
                         metaEventLoggingEnabled = true;
                     }
                 }
