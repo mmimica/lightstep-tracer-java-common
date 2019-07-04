@@ -25,6 +25,7 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
@@ -416,5 +417,12 @@ public class SpanTest {
     public void testIds() {
         assertEquals("1", undertest.context().toTraceId());
         assertEquals("2", undertest.context().toSpanId());
+    }
+
+    @Test
+    public void testMetaEventLoggingEnabled() {
+        abstractTracer.metaEventLoggingEnabled = true;
+        when(abstractTracer.buildSpan(anyString())).thenReturn(new com.lightstep.tracer.shared.SpanBuilder("", abstractTracer));
+        new Span(abstractTracer, spanContext, grpcSpan, 0L);
     }
 }

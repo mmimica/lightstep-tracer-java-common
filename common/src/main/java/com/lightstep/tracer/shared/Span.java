@@ -25,15 +25,15 @@ public class Span implements io.opentracing.Span {
         this.grpcSpan = grpcSpan;
         this.startTimestampRelativeNanos = startTimestampRelativeNanos;
 
-        if (tracer != null && tracer.metaEventLoggingEnabled && Util.IsNotMetaSpan(this)) {
-            tracer.buildSpan(LightStepConstants.MetaEvents.SpanStartOperation)
-                    .ignoreActiveSpan()
-                    .withTag(LightStepConstants.MetaEvents.MetaEventKey, true)
-                    .withTag(LightStepConstants.MetaEvents.SpanIdKey, context.getSpanId())
-                    .withTag(LightStepConstants.MetaEvents.TraceIdKey, context.getTraceId())
-                    .start()
-                    .finish();
-        }
+//        if (tracer != null && tracer.metaEventLoggingEnabled && Util.IsNotMetaSpan(this)) {
+//            tracer.buildSpan(LightStepConstants.MetaEvents.SpanStartOperation)
+//                    .ignoreActiveSpan()
+//                    .withTag(LightStepConstants.MetaEvents.MetaEventKey, true)
+//                    .withTag(LightStepConstants.MetaEvents.SpanIdKey, context.getSpanId())
+//                    .withTag(LightStepConstants.MetaEvents.TraceIdKey, context.getTraceId())
+//                    .start()
+//                    .finish();
+//        }
     }
 
     @Override
