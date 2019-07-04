@@ -7,7 +7,7 @@
     <parent>
         <artifactId>java</artifactId>
         <groupId>com.lightstep.tracer</groupId>
-        <version>0.17.2-mm</version>
+        <version>0.17.2-mm-2</version>
     </parent>
 
     <artifactId>tracer-grpc</artifactId>
